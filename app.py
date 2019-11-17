@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config['SQLAlchemy_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
 
@@ -29,7 +29,7 @@ def index():
             db.session.commit()
             return redirect('/')
         except:
-            return "There was an issue adding your task"
+            return 'There was an issue adding your task'
     else:
          tasks = todo.query.order_by(todo.date_created).all()
          return render_template('index.html', tasks=tasks)
